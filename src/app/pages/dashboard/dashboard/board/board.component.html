@@ -1,0 +1,29 @@
+<div class="board-container">
+
+  <div class="title-row">
+    <h2>{{board.name}}</h2>
+
+  </div>
+  <div class="columns" cdkDropListGroup>
+    <div class="column"
+         cdkDropList
+         *ngFor="let column of board.columns"
+         [cdkDropListData]="tasks[column.id] || []"
+         (cdkDropListDropped)="drop($event,column)">
+      <div class="column-head">
+        <h3>{{column.name}}</h3>
+        <button (click)="addTask(column)">Add Task</button>
+      </div>
+      <div class="tasks">
+        <div class="card" *ngFor="let task of tasks[column.id] || []" cdkDrag (dblclick)="viewTask(task, column)">
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+          <h4>{{task.id}}</h4>
+          <p>{{task.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <button mat-button [routerLink]="['/work/inner', workspace.id, 'board','edit',boardId]"> <mat-icon>add</mat-icon> add column</button>
+    </div>
+  </div>
+</div>

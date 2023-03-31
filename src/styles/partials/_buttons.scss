@@ -1,0 +1,82 @@
+
+@use '../globals/variables' as *;
+.button{
+  border: 0;
+  cursor: pointer;
+  &-def{
+    background-color: rgba(white,0.7);
+    text-transform: capitalize;
+    font-family: $title;
+    font-size: $med;
+    text-decoration: none;
+    color: $gray;
+    padding: 5px 15px;
+    position: relative;
+    transition: 0.3s;
+    transition-delay: 0.1s;
+    display: inline-flex;
+    align-self: center;
+
+    &::after,
+    span::before ,
+    &::before,
+    span::after{
+      content: '';
+      position: absolute;
+      background: transparent;
+      transition: 0.3s;
+
+    }
+    &::after,
+    span::before {
+      width: 60%;
+      height: 30%;
+    }
+    &::before,
+    span::after {
+      width: 30%;
+      height: 60%;
+    }
+
+    &::before {
+      top: -2px;
+      left: -2px;
+      border-top: 2px solid $main-1;
+      border-left: 2px solid $main-1;
+    }
+    &::after {
+      top: -1px;
+      right: -1px;
+      border-top: 1px solid $main-1;
+      border-right: 1px solid $main-1;
+    }
+
+    span::before {
+      bottom: -1px;
+      left: -1px;
+      border-bottom: 1px solid $main-1;
+      border-left: 1px solid $main-1;
+    }
+    span::after {
+      bottom: -2px;
+      right: -2px;
+      border-bottom: 2px solid $main-1;
+      border-right: 2px solid $main-1;
+    }
+
+
+    &:hover::before,
+    &:hover::after,
+    &:hover span::before,
+    &:hover span::after  {
+      width: 50%;
+      height: 50%;
+      border-color: transparent;
+    }
+    &:hover{
+      // border: 0;
+      background-color: $main-2;
+      color: white;
+    }
+  }
+}

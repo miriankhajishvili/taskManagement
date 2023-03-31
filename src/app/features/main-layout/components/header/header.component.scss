@@ -1,0 +1,30 @@
+
+@import 'src/styles/globals/variables';
+.header {
+  width: 100%;
+  height:$header-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .example-spacer{
+    flex: 1 1 auto;
+  }
+  .img-container {
+    height: 50px;
+    img {
+      height: 100%;
+    }
+  }
+  .logo{
+    cursor: pointer;
+  }
+  .menu-container {
+
+  }
+.header-right-side {
+display: flex;
+  align-items: center;
+}
+
+}

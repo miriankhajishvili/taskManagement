@@ -1,0 +1,36 @@
+<div class="page-content-container container-def">
+  <section class="title-row">
+    <h1>{{pageTitle}}:</h1>
+  </section>
+    <div class="form-container">
+      <form action="" [formGroup]="form" (submit)="submit()">
+        <mat-error *ngIf="errorMsg"> {{errorMsg}}</mat-error>
+        <mat-form-field appearance="fill" >
+          <mat-label>Name</mat-label>
+          <input type="text" matInput placeholder="workspaceName" formControlName="name" required>
+          <mat-error *ngIf="form.get('name')?.invalid && form.get('name')?.touched"> please fill in  </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>abbreviation</mat-label>
+          <input type="text" matInput placeholder="wkn" formControlName="abbreviation" required>
+          <mat-error *ngIf="form.get('abbreviation')?.invalid && form.get('abbreviation')?.touched"> please fill in </mat-error>
+        </mat-form-field>
+        <mat-form-field  class="color-picker-container">
+          <mat-label>color</mat-label>
+          <div class="flex-input">
+            <span >{{ form.get('color')?.value }} </span>
+            <input type="color" formControlName="color" required matInput/>
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error *ngIf="form.get('description')?.invalid && form.get('description')?.touched"> please fill in </mat-error>
+        </mat-form-field>
+
+        <button type="submit" color="primary" mat-raised-button matInput class="form-button">submit</button>
+      </form>
+    </div>
+</div>
+
+

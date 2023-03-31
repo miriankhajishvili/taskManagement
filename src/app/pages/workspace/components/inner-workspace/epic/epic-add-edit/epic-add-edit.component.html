@@ -1,0 +1,31 @@
+<div class="page-content-container container-def">
+  <!--  <section class="title-row">-->
+  <!--    <h1>{{pageTitle}}:</h1>-->
+  <!--  </section>-->
+  <div class="form-container">
+    <form action="" [formGroup]="form" (submit)="submit()">
+      <div class="form-header-row">
+        <div>
+          <mat-error *ngIf="errorMsg"> {{errorMsg}}</mat-error>
+        </div>
+        <div class="button-container">
+          <button type="submit" color="primary" mat-raised-button matInput class="form-button">submit</button>
+        </div>
+      </div>
+      <div class="issue-main-settings">
+        <div>
+          <mat-form-field appearance="fill" >
+            <mat-label>Name</mat-label>
+            <input type="text" matInput placeholder="Epic Name" formControlName="name" required>
+            <mat-error *ngIf="form.get('name')?.invalid && form.get('name')?.touched"> please fill in  </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>description</mat-label>
+            <input type="text" matInput placeholder="wkn" formControlName="description" required>
+            <mat-error *ngIf="form.get('description')?.invalid && form.get('description')?.touched"> please fill in </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

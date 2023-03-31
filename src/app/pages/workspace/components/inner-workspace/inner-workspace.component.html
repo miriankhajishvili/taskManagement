@@ -1,0 +1,34 @@
+<ng-container *ngIf="loading; else loaded">
+  <div class="loader-container">
+    <mat-progress-spinner
+      [color]="color"
+      [mode]="mode">
+    </mat-progress-spinner>
+  </div>
+</ng-container>
+<ng-template #loaded>
+<mat-sidenav-container #innerSidenav class="sidenav" >
+  <mat-sidenav mode="side"  class="start-content" opened="true" position="start"  [appPermissions]="['board:create', 'issueType:create','epic:create','project:users:create']">
+    <div class="sidebar-container">
+      <div class="sidebar-header">
+        <h2 class="title">{{ workspace['name']}}</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li routerLinkActive="active" [routerLink]="['/work/inner', workspace.id]" [routerLinkActiveOptions]={exact:true}><span>project</span></li>
+        <li routerLinkActive="active" [routerLink]="['/work/inner', workspace.id, 'board']"><span >Boards</span></li>
+        <li routerLinkActive="active" [routerLink]="['/work/inner', workspace.id, 'types']"><span>Issue Types</span></li>
+        <li routerLinkActive="active" [routerLink]="['/work/inner', workspace.id, 'epics']"><span>epics</span></li>
+        <li routerLinkActive="active" [routerLink]="['/work/inner', workspace.id, 'members']"><span >Members</span></li>
+      </ul>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="main-content" >
+    <router-outlet ></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</ng-template>
+
+
+
+
+

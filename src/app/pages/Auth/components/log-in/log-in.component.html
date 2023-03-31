@@ -1,0 +1,69 @@
+
+<div class="login-page">
+    <mat-card class="mat-elevation-z12">
+      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+        <mat-tab label="Sign In">
+            <mat-card-content>
+              <form  [formGroup]="form" (ngSubmit)="submit()">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    formControlName="email"
+                    id="email">
+                     <mat-error *ngIf="getEmail?.errors?.['required']">Email is required</mat-error>
+                     <mat-error *ngIf="getEmail?.errors?.['email']">Email form is required</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    id="password"
+                    formControlName="password"
+                    matInput [type]="hide ? 'password' : 'text'">
+                    
+                  
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    
+                    <mat-error *ngIf="getPassword?.errors?.['required']">Password is required</mat-error>
+                    <mat-error *ngIf="getPassword?.errors?.['minlength']">Password minlength must be at least 4 characters</mat-error>
+                    <mat-error *ngIf="getPassword?.errors?.['maxlength']">Password minlength must be less than 15 characters</mat-error>
+                 
+                </mat-form-field>
+
+              <div>
+                <mat-error >{{errorMsg}}</mat-error>
+              </div>
+                
+                
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="login-button">
+                  Sign In
+                </button>
+                <button
+                routerLink="/auth/register"
+                mat-raised-button
+                color="warn"
+                class="login-button">
+                Registration
+              </button>
+
+  
+
+              </form>
+            </mat-card-content>
+        </mat-tab>
+      
+
+      </mat-tab-group>
+    </mat-card>
+  </div>
+  

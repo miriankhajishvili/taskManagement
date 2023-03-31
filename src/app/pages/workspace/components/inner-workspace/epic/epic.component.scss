@@ -1,0 +1,55 @@
+
+
+
+@import 'src/styles/partials/common';
+@import 'src/styles/globals/variables';
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+    mat-form-field{
+      width: 100%;
+    }
+    .form-button{
+      margin-left: auto;
+    }
+  }
+}
+.color-picker-container{
+  .flex-input{
+    display: flex;
+    span{
+      display: block;
+      min-width:80px;
+    }
+  }
+}
+.title-row{
+  border-bottom: 1px solid $main-1;
+  box-shadow: 0 4px 5px -5px rgba($main-1, 0.3);
+  color:$main-1;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  h2{
+    margin: 0;
+  }
+  button{
+    //color:$main-1;
+  }
+}
+
+.color-square{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  //margin-right: 5px;
+}

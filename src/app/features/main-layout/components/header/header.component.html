@@ -1,0 +1,31 @@
+<header>
+<!--  <div class="menu-container">-->
+<!--      <button mat-button [matMenuTriggerFor]="menu" (click)="toggleMenu()"><mat-icon >menu</mat-icon></button>-->
+
+<!--      <mat-menu #menu="matMenu">-->
+<!--        <button mat-menu-item >Settings</button>-->
+<!--        <button (click)="signOut()" mat-menu-item routerLink="/auth/login">Log Out</button>-->
+<!--      </mat-menu>-->
+<!--   </div>-->
+  <mat-toolbar color="primary" class="header">
+    <mat-toolbar-row>
+      <span class="logo" routerLink="/home">My App</span>
+
+
+<!--      <div class="img-container">-->
+<!--        <img src="../../../../../assets/Logo/Logo.png" alt="Main Logo">-->
+<!--      </div>-->
+      <span class="example-spacer"></span>
+      <div class="header-right-side">
+<!--        <button mat-button routerLink="/work/add" class="example-icon" aria-label="Example icon-button with menu icon">-->
+<!--          <mat-icon>add</mat-icon> add Workspace-->
+<!--        </button>-->
+
+        <button mat-icon-button (click)="toggleMenu()" class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+</header>

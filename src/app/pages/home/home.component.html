@@ -1,0 +1,100 @@
+
+
+<div class="container-def">
+<section class="tasks-row">
+  <div class="section-title">
+    <h3 class="title"> my tasks</h3>
+    <span class="line"></span>
+  </div>
+  <div class="content-row">
+
+    <ng-container *ngIf="tasks.length === 0">
+      <span> there are no tasks</span>
+    </ng-container>
+    <ng-container *ngFor="let task of tasks">
+      <mat-card class="each-card" *ngIf="task.project !== null && task.board !== null && task.boardColumn !== null" [routerLink]="['/dashboard', task.project.id, task.board.id]">
+        <mat-card-content>
+          <div class="text-container">
+            <p>
+              {{task.name}}
+            </p>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-footer>
+          <span>Project: {{task.project.name}}</span>
+          <span>Board: {{task.board.name}}
+        </span>
+          <span>List: {{task.boardColumn.name}}</span>
+        </mat-card-footer>
+      </mat-card>
+    </ng-container>
+  </div>
+</section>
+
+<section class="tasks-row">
+  <div class="section-title">
+    <h3 class="title" routerLink="/work/list">Workspaces</h3>
+    <span class="line"></span>
+    <div class="button-container" [appPermissions]="['project:create']">
+      <button mat-stroked-button color="primary" routerLink="/work/add"> <mat-icon>add</mat-icon> add Workspace</button>
+    </div>
+  </div>
+  <div class="content-list">
+    <ng-container *ngIf="loading; else loaded">
+      <div class="loader-container">
+        <mat-progress-spinner
+          [color]="color"
+          [mode]="mode">
+        </mat-progress-spinner>
+      </div>
+    </ng-container>
+    <ng-template #loaded>
+
+      <div class="button-container message" *ngIf="getWorkspacesForMyUser.length == 0">
+        <p> there are no workspaces </p>
+        <button [appPermissions]="['project:create']" mat-stroked-button color="primary" routerLink="/work/add"> add Workspace</button>
+      </div>
+      <div class="each-workspace" *ngFor="let eachWork of getWorkspacesForMyUser" >
+        <div class="workspace-title-row">
+          <h3 class="title" [routerLink]="['/work/inner', eachWork.id]">
+            <span class="first-letter" style="background: {{ eachWork.color }}">
+             <span > {{ getFirstLetter(eachWork.name) }}</span>
+            </span>
+            {{eachWork.name}}
+          </h3>
+          <span class="line"></span>
+          <div class="button-container">
+
+            <ng-container *ngIf="eachWork.boards && eachWork.boards?.length !== 0">
+              <button mat-stroked-button color="primary" [routerLink]="['/dashboard',eachWork.id, eachWork.boards[0].id]">
+                {{eachWork.boards[0].id}} Project Dashboard</button>
+            </ng-container>
+<!--            <button mat-stroked-button color="primary" [routerLink]="['/dashboard', eachWork.id]">Project Dashboard</button>-->
+            <button mat-stroked-button color="primary" [routerLink]="['/work/inner', eachWork.id]">Settings</button>
+          </div>
+        </div>
+        <div class="workspace-content-row">
+          <mat-card class="button-card" [appPermissions]="['board:create']">
+            <mat-card-content  [routerLink]="['/work/inner', eachWork.id, 'board','add']">
+              + add board
+            </mat-card-content>
+          </mat-card>
+          <ng-container *ngIf="eachWork.boards?.length === 0">
+            <span> there are no boards</span>
+          </ng-container>
+          <mat-card *ngFor="let eachBoard of eachWork.boards" (click)="goToDashboard(eachBoard.id, eachWork.id)">
+            <mat-card-content > {{eachBoard.name}}</mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</section>
+</div>
+<!--ႱႠႪႭႫႤ   ႱႠႪႨႥႠႬ-->
+
+
+
+
+

@@ -1,0 +1,76 @@
+<div class="page-content-container container-def">
+<!--  <section class="title-row">-->
+<!--    <h1>{{pageTitle}}:</h1>-->
+<!--  </section>-->
+  <div class="form-container">
+    <form action="" [formGroup]="form" (submit)="submit()">
+      <div class="form-header-row">
+        <div>
+          <mat-error *ngIf="errorMsg"> {{errorMsg}}</mat-error>
+        </div>
+        <div class="button-container">
+          <button type="submit" color="primary" mat-raised-button matInput class="form-button">submit</button>
+        </div>
+      </div>
+      <div class="issue-main-settings">
+        <div>
+          <mat-form-field appearance="fill" >
+            <mat-label>Name</mat-label>
+            <input type="text" matInput placeholder="issueName" formControlName="name" required>
+            <mat-error *ngIf="form.get('name')?.invalid && form.get('name')?.touched"> please fill in  </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>description</mat-label>
+            <input type="text" matInput placeholder="wkn" formControlName="description" required>
+            <mat-error *ngIf="form.get('description')?.invalid && form.get('description')?.touched"> please fill in </mat-error>
+          </mat-form-field>
+          <mat-form-field  class="color-picker-container">
+            <mat-label>icon</mat-label>
+            <div class="flex-input">
+              <!--          <span >{{ form.get('icon')?.value }} </span>-->
+              <input type="text" formControlName="icon" required matInput/>
+            </div>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" class="color-picker-container" >
+            <mat-label>color</mat-label>
+            <div class="flex-input">
+              <span >{{ form.get('color')?.value }} </span>
+              <input type="color" formControlName="color" required matInput/>
+            </div>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Issue Type</mat-label>
+            <mat-select formControlName="type" name="type">
+              <mat-option *ngFor="let type of issueTypes" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-checkbox class="example-margin" formControlName="isActive">Is Active</mat-checkbox>
+          <button color="primary" mat-raised-button class="form-button" (click)="addColumn()">add Column</button>
+
+        </div>
+      </div>
+      <div formArrayName="issueTypeColumns" class="columns-container">
+        <div *ngFor="let field of issueFormArray.controls; let i = index" class="item">
+          <div [formGroupName]="i" class="item-inner">
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Field Name</mat-label>
+              <input matInput placeholder="Description" formControlName="filedName">
+            </mat-form-field>
+            <mat-checkbox class="example-margin" formControlName="isRequired"> Is required</mat-checkbox>
+            <button mat-icon-button color="primary" (click)="deleteIssue(i)" > <mat-icon>delete</mat-icon></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
